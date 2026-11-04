@@ -25,15 +25,127 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Parecer atual do desenvolvimento
+```bash
+# Conferir a conversa que eu tive com o ChatGPT. Recomendo ler cada prompt que solicitei para entender o contexto atual do desenvolvimento
+
+$ [Conversa](https://chatgpt.com/share/6aeb8649-bf08-83e8-85d0-c82c333998bc)
+```
+
 ## Project setup
 
 ```bash
-$ bun install
+# Instale o WSL (Virtualização da Distribuição Linux no Windows)
+$ wsl --install
+
+# Caso você já tenha o WSL instalado, apenas atualize
+$ wsl --update
+
+# Ativar a virtualização na sua BIOS. 
+$ 1. Assim que estiver reiniciando ou ligando pressionar a tecla DEL ou F12.
+$ 2. Procurar por 'SVM Mode' ou algo parecido dentro de 'Advanced CPU Settings' ou algo parecido e deixar como 'enabled'
+$ 3. Pressione F10, confirme e deixe o Computador inicializar normalmente
+$ 4. Como confirmar no Windows:
+$   4.1. Pressione Ctrl + Shift + Esc.
+$   4.2. Abra Desempenho → CPU.
+$   4.3. Procure por Virtualização.
+
+# Baixar versão mais recente do Docker
+$ Baixar o [Docker](https://docs.docker.com/desktop/setup/install/windows-install/)
+```
+
+```bash
+# Abrir o powershell em Modo Desenvolvedor
+$ powershell -c "irm bun.sh/install.ps1|iex" 
+# Verificar se foi instalado corretamente
+$ bun --version
+
+# Configurar pacote NestJS
+$ bun add -g @nestjs/cli
+$ nest new distributed-wallet --package-manager bun
+
+$ bun add @mikro-orm/core @mikro-orm/nestjs @mikro-orm/postgresql @mikro-orm/decorators @mikro-orm/migrations dotenv
+$ bun add -d @mikro-orm/cli
+$ bun add -d @mikro-orm/cli@7.2.7 @oxc-node/core
+
+$ bun run db:migration:create
+$ bun run db:migration:up
+
+$ bun run build
+
+# Navegação
+$ Entre na pasta correta. Por exemplo: "C:\Users\SeuUsuario\distributed-wallet"
+
+# No Powershell em Modo Desenvolvedor
+$ winget install OpenJS.NodeJS.LTS
+# Verifique
+$ node -v
+$ npm -v
+
+# Configurar localstack
+$ npm install -g @localstack/lstk
+#Inicialize
+$ lstk start
+```
+
+## Useful Commands for Docker
+
+```bash
+# Traz todos os Containers e seus estados
+$ docker compose ps
+
+# Faz os containers saírem do ar
+$ docker compose down
+
+# Faz os containers subirem
+$ docker compose up -d
+```
+
+## Useful Commands for Git
+```bash
+# Navegação
+$ Entre na pasta correta. Por exemplo: "C:\Users\SeuUsuario\distributed-wallet"
+
+# Configuração geral
+$ git config --global user.name "Seu Nome"
+$ git config --global user.email "seuEmail@dominioDoEmail.com"
+
+# Inicializa um repositório local
+$ git init
+
+# Adiciona todas as changes locais para push no git
+$ git add .
+
+# Verifica o status atual do commit
+$ git status
+
+# Configura o seu repositório
+$ 1. Crie um usuário no Git se não tiver
+$ 2. Crie um novo repositório
+$ 3. No botão "<> Code", selecionar HTTPS e copiar a URL
+$ 4. usar git remote add origin colarURLaqui
+
+$ git remote add origin https://github.com/seuUsuario/nomeDoRepositorio.git
+
+# Muda o nome da branch principal para main
+$ git branch -M main
+
+# Realiza o Commit
+$ git commit -m 'Test: First Commit'
+
+# Verifica se tem algo no repositório
+$ git pull origin main --allow-unrelated-histories
+
+# Envia os metadados para o repositório
+$ git push -u origin main  
 ```
 
 ## Compile and run the project
 
 ```bash
+# build
+$ bun run build
+
 # development
 $ bun run start
 
@@ -47,7 +159,7 @@ $ bun run start:prod
 ## Run tests
 
 ```bash
-# unit tests
+# unit tests. Exemplo: bun test domain/shared/money.spec.ts  
 $ bun run test
 
 # e2e tests
