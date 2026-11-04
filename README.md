@@ -136,8 +136,10 @@ $ git commit -m 'Test: First Commit'
 # Verifica se tem algo no repositório
 $ git pull origin main --allow-unrelated-histories
 
-# Envia os metadados para o repositório
-$ git push -u origin main  
+# Envia os metadados para o repositório pela primeira vez
+$ git push -u origin main
+# Depois usar
+$ git push
 ```
 
 ## Compile and run the project
